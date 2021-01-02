@@ -57,7 +57,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Let's play TICTACTOE!");
+        primaryStage.setTitle("TICTACTOE");
         primaryStage.show();
         /*button.setOnAction(new EventHandler<ActionEvent>() {
             @Override

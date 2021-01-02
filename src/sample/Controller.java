@@ -2,9 +2,11 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 import java.awt.*;
 
@@ -23,6 +25,11 @@ public class Controller {
     private RadioButton p2x;
     @FXML
     private RadioButton p2o;
+    @FXML
+    private TextField p1name;
+    @FXML
+    private TextField p2name;
+    private Alert alert = new Alert(Alert.AlertType.ERROR);
 
     @FXML
     private void quit() { //quitbutton onmouseclicked
@@ -64,6 +71,12 @@ public class Controller {
 
     @FXML
     private void startgame() { // startbutton onmouseclicked
-        //start the game
+        System.out.println("asd");
+        if (!p1name.getText().equals("") || !p2name.getText().equals("")){
+
+        }else{
+            alert.setContentText("No name entered!");
+            alert.show();
+        }
     }
 }
