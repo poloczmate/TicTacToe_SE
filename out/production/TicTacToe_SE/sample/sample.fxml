@@ -51,10 +51,10 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <RadioButton fx:id="p1x" layoutX="105.0" layoutY="130.0" mnemonicParsing="false" text="X" />
-      <RadioButton fx:id="p1o" layoutX="192.0" layoutY="130.0" mnemonicParsing="false" text="O" />
-      <RadioButton fx:id="p2x" layoutX="399.0" layoutY="130.0" mnemonicParsing="false" text="X" />
-      <RadioButton fx:id="p2o" layoutX="486.0" layoutY="130.0" mnemonicParsing="false" text="O" />
+      <RadioButton fx:id="p1x" onMouseClicked="#radiobuttonp1x" layoutX="105.0" layoutY="130.0" mnemonicParsing="false" text="X" />
+      <RadioButton fx:id="p1o" onMouseClicked="#radiobuttonp1o" layoutX="192.0" layoutY="130.0" mnemonicParsing="false" text="O" />
+      <RadioButton fx:id="p2x" onMouseClicked="#radiobuttonp2x" layoutX="399.0" layoutY="130.0" mnemonicParsing="false" text="X" />
+      <RadioButton fx:id="p2o" onMouseClicked="#radiobuttonp2o" layoutX="486.0" layoutY="130.0" mnemonicParsing="false" text="O" />
       <Separator layoutX="15.0" layoutY="179.0" prefHeight="5.0" prefWidth="572.0" />
       <Label layoutX="124.0" layoutY="206.0" text="Choose Background:">
          <font>
