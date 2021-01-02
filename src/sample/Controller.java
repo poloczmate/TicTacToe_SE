@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
+import javax.xml.transform.Result;
 import java.awt.*;
 
 public class Controller {
@@ -71,9 +72,23 @@ public class Controller {
 
     @FXML
     private void startgame() { // startbutton onmouseclicked
-        System.out.println("asd");
         if (!p1name.getText().equals("") || !p2name.getText().equals("")){
+            if ((p1o.isSelected() || p1x.isSelected()) && (p2o.isSelected() || p2x.isSelected())){
+                String r = (String) bgcolor.getValue();
+                if (r != null){
+                    //here comes the code!
 
+
+
+                    
+                }else{
+                    alert.setContentText("No choosen background!");
+                    alert.show();
+                }
+            }else {
+                alert.setContentText("No choosen figure!");
+                alert.show();
+            }
         }else{
             alert.setContentText("No name entered!");
             alert.show();
