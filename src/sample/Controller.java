@@ -155,9 +155,9 @@ public class Controller {
     @FXML
     private void radiobuttonp2x() {
         if (p2x.isSelected()) {
+            p1x.setSelected(false);
             p2o.setSelected(false);
             p1o.setSelected(true);
-            p2o.setSelected(false);
         }
     }
     @FXML
