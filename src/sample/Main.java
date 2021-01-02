@@ -1,12 +1,17 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -14,20 +19,21 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import javafx.scene.shape.Ellipse;
 
-import java.util.Collections;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 public class Main extends Application {
     private String whoseNext = "X";
     private Label msgLabel = new Label("X's turn!");
     private MapElement[][] Map = new MapElement[3][3];
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        GridPane gp = new GridPane();
+        /*GridPane gp = new GridPane();
         gp.setMinSize(600,700);
         gp.setMaxSize(600,700);
         msgLabel.setMinSize(600,40);
@@ -47,13 +53,13 @@ public class Main extends Application {
         Button button = new Button("Restart");
         button.setMinSize(100,40);
         button.setFont(Font.font(20));
-        gp.addRow(5,button);
-        Scene scene = new Scene(gp);
+        gp.addRow(5,button);*/
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Let's play TICTACTOE!");
         primaryStage.show();
-
-        button.setOnAction(new EventHandler<ActionEvent>() {
+        /*button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 for (int i = 0; i < 3; i++){
@@ -64,7 +70,7 @@ public class Main extends Application {
                 whoseNext = "X";
                 printMsg("New game started! X's turn!");
             }
-        });
+        });*/
     }
 
     private class MapElement extends StackPane {
