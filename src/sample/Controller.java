@@ -19,10 +19,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.*;
+import java.util.List;
 
 public class Controller {
     @FXML
@@ -31,6 +34,8 @@ public class Controller {
     private Button startButton;
     @FXML
     private Button quitButton;
+    @FXML
+    private Button highscoreButton;
     @FXML
     private RadioButton p1x;
     @FXML
@@ -250,6 +255,16 @@ public class Controller {
     @FXML
     private void quit() { //quitbutton onmouseclicked
         quitButton.getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void highscore() {
+        try {
+            File file = new File("hs.csv");
+            Desktop.getDesktop().open(file);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
