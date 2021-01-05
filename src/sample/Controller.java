@@ -231,7 +231,7 @@ public class Controller {
         try {
             RandomAccessFile raf = new RandomAccessFile("hs.csv","rw");
             for (int i = highscore.size()-1; i >= 0; i--){
-                if (i != 0) {
+                if (i == 0) {
                     raf.writeBytes(highscore.get(i).getName() + ";" + highscore.get(i).getPoints());
                 }else{
                     raf.writeBytes(highscore.get(i).getName() + ";" + highscore.get(i).getPoints() + "\n");
