@@ -18,7 +18,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,6 +47,7 @@ public class Controller {
     private TextField p1name;
     @FXML
     private TextField p2name;
+
     private Alert alert = new Alert(Alert.AlertType.ERROR);
     private String whoseNext = "X";
     private javafx.scene.control.Label msgLabel = new Label();
@@ -57,35 +57,36 @@ public class Controller {
 
     private class MapElement extends StackPane {
         private Text text = new Text("");
-        public MapElement(double x, double y, double TextSize){
+        public MapElement(double x, double y, double TextSize) {
             javafx.scene.shape.Rectangle r = new Rectangle(x,y);
             r.setStroke(Color.BLACK);
-            if (bgcolor.getValue().toString().equals("White")){
+            if (bgcolor.getValue().toString().equals("White")) {
                 r.setFill(null);
-            }else if(bgcolor.getValue().toString().equals("Blue")){
+            } else if (bgcolor.getValue().toString().equals("Blue")) {
                 r.setFill(Color.BLUE);
-            }else if(bgcolor.getValue().toString().equals("Red")){
+            } else if (bgcolor.getValue().toString().equals("Red")) {
                 r.setFill(Color.RED);
-            }else if(bgcolor.getValue().toString().equals("Green")){
+            } else if (bgcolor.getValue().toString().equals("Green")){
                 r.setFill(Color.GREEN);
-            }else if(bgcolor.getValue().toString().equals("Yellow")){
+            } else if (bgcolor.getValue().toString().equals("Yellow")) {
                 r.setFill(Color.YELLOW);
-            }else if(bgcolor.getValue().toString().equals("Gray")){
+            } else if(bgcolor.getValue().toString().equals("Gray")) {
                 r.setFill(Color.GRAY);
             }
+
             text.setFont(javafx.scene.text.Font.font(TextSize));
             getChildren().addAll(r,text);
-            setOnMouseClicked(event->{
-                if (!whoseNext.equals("")){
-                    if (getText().equals("")){
+            setOnMouseClicked(event-> {
+                if (!whoseNext.equals("")) {
+                    if (getText().equals("")) {
                         setText(whoseNext);
-                        if(!hasWinner()){
+                        if (!hasWinner()) {
                             if (!isDraw()){
-                                if (whoseNext.equals("X")){
+                                if (whoseNext.equals("X")) {
                                     whoseNext = "O";
-                                }else if(whoseNext.equals("O")) whoseNext = "X";
+                                } else if (whoseNext.equals("O")) whoseNext = "X";
                                 printMsg(map.get(whoseNext) + "'s turn!");
-                            }else {
+                            } else {
                                 whoseNext = "";
                                 printMsg("The game is a draw. Press the button to exit!");
                                 //highscore draw
@@ -96,19 +97,23 @@ public class Controller {
                                         alreadyinhsx = true;
                                         highscore.get(i).draw();
                                     }
+
                                     if (highscore.get(i).getName().equals(map.get("O"))) {
                                         alreadyinhso = true;
                                         highscore.get(i).draw();
                                     }
                                 }
-                                if (!alreadyinhsx){
+
+                                if (!alreadyinhsx) {
                                     highscore.add(new Highscore(map.get("X"),1));
                                 }
-                                if (!alreadyinhso){
+
+                                if (!alreadyinhso) {
                                     highscore.add(new Highscore(map.get("O"),1));
                                 }
                             }
-                        }else{
+
+                        } else {
                             printMsg(map.get(whoseNext) + " has won! Press the button to exit!");
                             //highscore
                             boolean alreadyinhs = false;
@@ -118,22 +123,23 @@ public class Controller {
                                     alreadyinhs = true;
                                 }
                             }
-                            if (!alreadyinhs){
+                            if (!alreadyinhs) {
                                 highscore.add(new Highscore(map.get(whoseNext),2));
                             }
-                            if (whoseNext.equals("X")){
+                            if (whoseNext.equals("X")) {
                                 //keres O
                                 alreadyinhs = false;
-                                for (int i = 0; i < highscore.size(); i++){
+                                for (int i = 0; i < highscore.size(); i++) {
                                     if (highscore.get(i).getName().equals(map.get("O"))) {
                                         alreadyinhs = true;
                                     }
                                 }
+
                                 if (!alreadyinhs){
                                     highscore.add(new Highscore(map.get("O"),0));
                                 }
-                            }else{
-                                for (int i = 0; i < highscore.size(); i++){
+                            } else {
+                                for (int i = 0; i < highscore.size(); i++) {
                                     if (highscore.get(i).getName().equals(map.get("X"))) {
                                         alreadyinhs = true;
                                     }
@@ -144,26 +150,33 @@ public class Controller {
                             }
                             whoseNext = "";
                         }
-                    }else{
-                        printMsg("The field is not free! " + map.get(whoseNext) +"'s turn!");
+                    } else {
+                        printMsg("This field is not free! " + map.get(whoseNext) +"'s turn!");
                     }
-                }else printMsg("The game is over! Press the button to exit!");
+                } else {
+                    printMsg("The game is over! Press the button to exit!");
+                }
             });
         }
-        public void setText(String s){
+
+        public void setText(String s) {
             text.setText(s);
         }
+
         public String getText(){
             return text.getText();
         }
     }
-    private class Highscore implements Comparable<Highscore>{
+
+    private class Highscore implements Comparable<Highscore> {
         private String name;
         private int points;
+
         public Highscore(String name, int points){
             this.name = name;
             this.points = points;
         }
+
         public String getName() {
             return name;
         }
@@ -171,9 +184,11 @@ public class Controller {
         public int getPoints() {
             return points;
         }
+
         public void win(){
             points += 2;
         }
+
         public void draw(){
             points++;
         }
@@ -184,13 +199,14 @@ public class Controller {
         }
     }
 
-    public boolean hasWinner(){
-        for (int i = 0; i <3;i++){
+    public boolean hasWinner() {
+        for (int i = 0; i <3;i++) {
             if (Map[i][0].getText().equals(whoseNext)
                     && Map[i][1].getText().equals(whoseNext)
                     && Map[i][2].getText().equals(whoseNext)) return true;
         }
-        for (int i = 0; i <3;i++){
+
+        for (int i = 0; i <3;i++) {
             if (Map[0][i].getText().equals(whoseNext)
                     && Map[1][i].getText().equals(whoseNext)
                     && Map[2][i].getText().equals(whoseNext)) return true;
@@ -203,12 +219,13 @@ public class Controller {
                 && Map[2][0].getText().equals(whoseNext)) return true;
         return false;
     }
-    public void printMsg(String msg){
+    public void printMsg(String msg) {
         msgLabel.setText(msg);
     }
-    public boolean isDraw(){
-        for (int i = 0; i < 3; i++){
-            for (int j = 0; j<3;j++){
+
+    public boolean isDraw() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j<3;j++) {
                 if (Map[i][j].getText().equals("")) {
                     return false;
                 }
@@ -217,37 +234,42 @@ public class Controller {
         return true;
     }
 
-    public void importHighscore(){
-        try{
+    public void importHighscore() {
+        try {
             RandomAccessFile raf = new RandomAccessFile("hs.csv","r");
             String row = "";
-            while ((row = raf.readLine()) != null){
+            while ((row = raf.readLine()) != null) {
                 String[] temp = row.split(";");
                 highscore.add(new Highscore(temp[0],Integer.valueOf(temp[1])));
             }
-        }catch (FileNotFoundException e){
+
+        } catch (FileNotFoundException e) {
             System.out.println("File not found");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void exportHighscore(){
+
+    public void exportHighscore() {
         Collections.sort(highscore);
         try {
             RandomAccessFile raf = new RandomAccessFile("hs.csv","rw");
-            for (int i = highscore.size()-1; i >= 0; i--){
+            for (int i = highscore.size()-1; i >= 0; i--) {
                 if (i == 0) {
                     raf.writeBytes(highscore.get(i).getName() + ";" + highscore.get(i).getPoints());
-                }else{
+                } else {
                     raf.writeBytes(highscore.get(i).getName() + ";" + highscore.get(i).getPoints() + "\n");
                 }
             }
-        }catch (FileNotFoundException e){
+
+        } catch (FileNotFoundException e) {
             System.out.println("File not found");
-        }catch (IOException io){
+        } catch (IOException io) {
             System.out.println("File not found");
         }
-        while (highscore.size() != 0){
+
+        while (highscore.size() != 0) {
             highscore.remove(0);
         }
     }
@@ -262,6 +284,7 @@ public class Controller {
         try {
             File file = new File("hs.csv");
             Desktop.getDesktop().open(file);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -275,6 +298,7 @@ public class Controller {
             p2o.setSelected(true);
         }
     }
+
     @FXML
     private void radiobuttonp1o() {
         if (p1o.isSelected()) {
@@ -283,6 +307,7 @@ public class Controller {
             p1x.setSelected(false);
         }
     }
+
     @FXML
     private void radiobuttonp2x() {
         if (p2x.isSelected()) {
@@ -291,6 +316,7 @@ public class Controller {
             p1o.setSelected(true);
         }
     }
+
     @FXML
     private void radiobuttonp2o() {
         if (p2o.isSelected()) {
@@ -302,10 +328,10 @@ public class Controller {
 
     @FXML
     private void startgame() { // startbutton onmouseclicked
-        if (!p1name.getText().equals("") || !p2name.getText().equals("")){
-            if ((p1o.isSelected() || p1x.isSelected()) && (p2o.isSelected() || p2x.isSelected())){
+        if (!p1name.getText().equals("") || !p2name.getText().equals("")) {
+            if ((p1o.isSelected() || p1x.isSelected()) && (p2o.isSelected() || p2x.isSelected())) {
                 String r = (String) bgcolor.getValue();
-                if (r != null){
+                if (r != null) {
                     importHighscore();
                     GridPane gp = new GridPane();
                     gp.setMinSize(600,700);
@@ -314,14 +340,16 @@ public class Controller {
                     msgLabel.setAlignment(Pos.CENTER);
                     msgLabel.setFont(Font.font(30));
                     gp.add(msgLabel,0,0,3,1);
-                    if (p1x.isSelected()){
+
+                    if (p1x.isSelected()) {
                         map.put("X",p1name.getText());
                         map.put("O",p2name.getText());
-                    }else{
+                    } else{
                         map.put("O",p1name.getText());
                         map.put("X",p2name.getText());
                     }
-                    for (int i =0; i< 3;i++){
+
+                    for (int i =0; i< 3;i++) {
                         MapElement m1 = new MapElement(200,200,72);
                         MapElement m2 = new MapElement(200,200,72);
                         MapElement m3 = new MapElement(200,200,72);
@@ -330,6 +358,7 @@ public class Controller {
                         Map[i][1] = m2;
                         Map[i][2] = m3;
                     }
+
                     Button button = new Button("Exit");
                     button.setMinSize(100,40);
                     button.setFont(Font.font(20));
@@ -354,15 +383,15 @@ public class Controller {
                         exportHighscore();
                         }
                     });
-                }else{
+                } else {
                     alert.setContentText("No choosen background!");
                     alert.show();
                 }
-            }else {
+            } else {
                 alert.setContentText("No choosen figure!");
                 alert.show();
             }
-        }else{
+        } else {
             alert.setContentText("No name entered!");
             alert.show();
         }
