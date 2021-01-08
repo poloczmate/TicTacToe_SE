@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane fx:id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GUI">
    <children>
       <Label layoutX="238.0" layoutY="14.0" text="Tic-Tac-Toe">
          <font>
@@ -75,5 +75,6 @@
       </ChoiceBox>
       <Button fx:id="startButton" onMouseClicked="#startgame" layoutX="104.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="START" />
       <Button fx:id="quitButton"  onMouseClicked="#quit" layoutX="370.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="QUIT" />
+      <Button fx:id="highscoreButton"  onMouseClicked="#highscore" layoutX="238.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="Highscore" />
    </children>
 </Pane>
