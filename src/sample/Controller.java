@@ -2,10 +2,8 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,11 +16,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.*;
 import java.util.List;
 
@@ -38,18 +31,26 @@ public class Controller {
         public MapElement(double x, double y, double TextSize, ChoiceBox bgcolor) {
             javafx.scene.shape.Rectangle r = new Rectangle(x,y);
             r.setStroke(Color.BLACK);
-            if (bgcolor.getValue().toString().equals("White")) {
-                r.setFill(null);
-            } else if (bgcolor.getValue().toString().equals("Blue")) {
-                r.setFill(Color.BLUE);
-            } else if (bgcolor.getValue().toString().equals("Red")) {
-                r.setFill(Color.RED);
-            } else if (bgcolor.getValue().toString().equals("Green")){
-                r.setFill(Color.GREEN);
-            } else if (bgcolor.getValue().toString().equals("Yellow")) {
-                r.setFill(Color.YELLOW);
-            } else if(bgcolor.getValue().toString().equals("Gray")) {
-                r.setFill(Color.GRAY);
+
+            switch (bgcolor.getValue().toString()) {
+                case "White":
+                    r.setFill(Color.WHITE);
+                    break;
+                case "Blue":
+                    r.setFill(Color.BLUE);
+                    break;
+                case "Red":
+                    r.setFill(Color.RED);
+                    break;
+                case "Green":
+                    r.setFill(Color.GREEN);
+                    break;
+                case "Yellow":
+                    r.setFill(Color.YELLOW);
+                    break;
+                case "Gray":
+                    r.setFill(Color.GRAY);
+                    break;
             }
 
             text.setFont(javafx.scene.text.Font.font(TextSize));
@@ -59,21 +60,19 @@ public class Controller {
                     if (getText().equals("")) {
                         setText(whoseNext);
                         if (!hasWinner()) {
-                            if (!isDraw()){
+                            if (!isDraw()) {
                                 if (whoseNext.equals("X")) {
                                     whoseNext = "O";
-                                } else if (whoseNext.equals("O")) whoseNext = "X";
+                                } else if (whoseNext.equals("O"))
+                                    whoseNext = "X";
                                 printMsg(map.get(whoseNext) + "'s turn!");
                             } else {
                                 whoseNext = "";
                                 printMsg("The game is a draw. Press the button to exit!");
-                                //highscore draw
-                                Highscore.addPointDraw(highscore,map);
+                                Highscore.addPointDraw(highscore, map);
                             }
-
                         } else {
                             printMsg(map.get(whoseNext) + " has won! Press the button to exit!");
-                            //highscore
                             Highscore.addPointWin(whoseNext,highscore,map);
                             whoseNext = "";
                         }
@@ -96,13 +95,13 @@ public class Controller {
     }
 
     public static boolean hasWinner() {
-        for (int i = 0; i <3;i++) {
+        for (int i = 0; i <3; i++) {
             if (Map[i][0].getText().equals(whoseNext)
                     && Map[i][1].getText().equals(whoseNext)
                     && Map[i][2].getText().equals(whoseNext)) return true;
         }
 
-        for (int i = 0; i <3;i++) {
+        for (int i = 0; i <3; i++) {
             if (Map[0][i].getText().equals(whoseNext)
                     && Map[1][i].getText().equals(whoseNext)
                     && Map[2][i].getText().equals(whoseNext)) return true;
@@ -122,7 +121,7 @@ public class Controller {
 
     public static boolean isDraw() {
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j<3;j++) {
+            for (int j = 0; j < 3; j++) {
                 if (Map[i][j].getText().equals("")) {
                     return false;
                 }
