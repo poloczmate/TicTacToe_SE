@@ -73,8 +73,8 @@
             </FXCollections>
          </items>
       </ChoiceBox>
-      <Button fx:id="startButton" onMouseClicked="#startgame" layoutX="104.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="START" />
-      <Button fx:id="quitButton"  onMouseClicked="#quit" layoutX="370.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="QUIT" />
+      <Button fx:id="startButton" onMouseClicked="#startgame" layoutX="104.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="Start" />
+      <Button fx:id="quitButton"  onMouseClicked="#quit" layoutX="370.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="Quit" />
       <Button fx:id="highscoreButton"  onMouseClicked="#highscore" layoutX="238.0" layoutY="264.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="123.0" text="Highscore" />
    </children>
 </Pane>

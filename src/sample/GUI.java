@@ -12,7 +12,7 @@ import java.io.IOException;
 public class GUI {
 
     @FXML
-    public TextField p1name;
+    private TextField p1name;
 
     @FXML
     private TextField p2name;

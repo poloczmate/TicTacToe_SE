@@ -44,7 +44,6 @@ public class Highscore implements Comparable<Highscore> {
             highscore.add(new Highscore(map.get(whoseNext),2));
         }
         if (whoseNext.equals("X")) {
-            //suche O
             alreadyinhs = false;
             for (int i = 0; i < highscore.size(); i++) {
                 if (highscore.get(i).getName().equals(map.get("O"))) {
@@ -125,9 +124,7 @@ public class Highscore implements Comparable<Highscore> {
                 }
             }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException io) {
+        } catch (IOException e) {
             System.out.println("File not found");
         }
 

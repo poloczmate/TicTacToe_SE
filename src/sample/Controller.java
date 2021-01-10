@@ -28,7 +28,7 @@ public class Controller {
 
     private static class MapElement extends StackPane {
         private Text text = new Text("");
-        public MapElement(double x, double y, double TextSize, ChoiceBox bgcolor) {
+        private MapElement(double x, double y, double TextSize, ChoiceBox bgcolor) {
             javafx.scene.shape.Rectangle r = new Rectangle(x,y);
             r.setStroke(Color.BLACK);
 
@@ -68,16 +68,16 @@ public class Controller {
                                 printMsg(map.get(whoseNext) + "'s turn!");
                             } else {
                                 whoseNext = "";
-                                printMsg("The game is a draw. Press the button to exit!");
+                                printMsg("The game is a draw.");
                                 Highscore.addPointDraw(highscore, map);
                             }
                         } else {
-                            printMsg(map.get(whoseNext) + " has won! Press the button to exit!");
-                            Highscore.addPointWin(whoseNext,highscore,map);
+                            printMsg(map.get(whoseNext) + " has won!");
+                            Highscore.addPointWin(whoseNext, highscore, map);
                             whoseNext = "";
                         }
                     } else {
-                        printMsg("This field is not free! " + map.get(whoseNext) +"'s turn!");
+                        printMsg("This field is not free! " + map.get(whoseNext) + "'s turn!");
                     }
                 } else {
                     printMsg("The game is over! Press the button to exit!");
@@ -106,12 +106,15 @@ public class Controller {
                     && Map[1][i].getText().equals(whoseNext)
                     && Map[2][i].getText().equals(whoseNext)) return true;
         }
+
         if (Map[0][0].getText().equals(whoseNext)
                 && Map[1][1].getText().equals(whoseNext)
                 && Map[2][2].getText().equals(whoseNext)) return true;
+
         if (Map[0][2].getText().equals(whoseNext)
                 && Map[1][1].getText().equals(whoseNext)
                 && Map[2][0].getText().equals(whoseNext)) return true;
+
         return false;
     }
 
@@ -130,7 +133,7 @@ public class Controller {
         return true;
     }
 
-    public static void startgame(RadioButton p1x, RadioButton p1o, RadioButton p2x, RadioButton p2o, TextField p1name, TextField p2name, ChoiceBox bgcolor) { // startbutton onmouseclicked
+    public static void startgame(RadioButton p1x, RadioButton p1o, RadioButton p2x, RadioButton p2o, TextField p1name, TextField p2name, ChoiceBox bgcolor) {
         if (!p1name.getText().equals("") || !p2name.getText().equals("")) {
             if ((p1o.isSelected() || p1x.isSelected()) && (p2o.isSelected() || p2x.isSelected())) {
                 String r = (String) bgcolor.getValue();
@@ -169,14 +172,14 @@ public class Controller {
                     Scene scene = new Scene(gp);
                     Stage gameStage = new Stage();
                     gameStage.setScene(scene);
-                    gameStage.setTitle("TICTACTOE");
+                    gameStage.setTitle("Tic-Tac-Toe");
                     msgLabel.setText(map.get(whoseNext) + "'s turn!");
                     gameStage.show();
+                    
                     button.setOnAction(new EventHandler<ActionEvent>() {
-                        @Override
                         public void handle(ActionEvent actionEvent) {
                         for (int i = 0; i < 3; i++){
-                            for (int j = 0; j< 3; j++){
+                            for (int j = 0; j < 3; j++){
                                 Map[i][j].setText("");
                             }
                         }
@@ -187,13 +190,13 @@ public class Controller {
                         }
                     });
                 } else {
-                    GUI.throwAlert("No choosen background!");
+                    GUI.throwAlert("No background has been chosen!");
                 }
             } else {
-                GUI.throwAlert("No choosen figure!");
+                GUI.throwAlert("No figure has been chosen figure!");
             }
         } else {
-            GUI.throwAlert("No name entered!");
+            GUI.throwAlert("No name has been entered!");
         }
     }
 }
